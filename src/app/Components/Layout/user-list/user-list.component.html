@@ -1,0 +1,57 @@
+<div class=" py-6">
+    <div class="flex justify-between items-center p-4">
+        <div class="text-xl font-semibold">Users Data</div>
+
+
+        <div>
+            <label for="rowsPerPage" class="mr-2">Rows per page:</label>
+            <select id="rowsPerPage" class="border p-1" [(ngModel)]="rowsPerPage" (change)="onRowsPerPageChange()">
+                <option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</option>
+            </select>
+        </div>
+    </div>
+
+    <table class="table-auto w-full  text-left border-collapse">
+        <thead class="">
+            <tr class="bg-gray-800 text-white font-bold">
+                <th class="px-4 py-2 border">User ID</th>
+                <th class="px-4 py-2 border">Title</th>
+                <th class="px-4 py-2 border">Body</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let post of paginatedData" class=" hover:bg-gray-500 hover:text-white">
+                <td class="border px-4 py-2">{{ post.userId }}</td>
+                <td class="border px-4 py-2">{{ post.title }}</td>
+                <td class="border px-4 py-2">{{ post.body }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="flex justify-end items-center p-4 space-x-2">
+        <button class="px-4 py-2 bg-gray-300  text-gray-700 rounded" [disabled]="currentPage === 1"
+            (click)="previousPage()">
+
+            <svg class="w-2.5 h-2.5 rtl:rotate-180 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M5 1 1 5l4 4" />
+            </svg>
+        </button>
+
+
+        <div class="text-center">
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        </div>
+
+        <button class="px-4 py-2 bg-gray-300 text-gray-700 rounded" [disabled]="currentPage === totalPages"
+            (click)="nextPage()">
+            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 9 4-4-4-4" />
+            </svg>
+        </button>
+    </div>
+
+</div>

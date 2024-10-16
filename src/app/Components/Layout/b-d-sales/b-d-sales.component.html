@@ -1,0 +1,10 @@
+<p class="text-3xl font-bold">
+    Sales Data
+</p>
+<br>
+<br>
+<ngx-charts-bar-vertical *ngIf="salesData.length > 0" [view]="view" [results]="salesData" [xAxis]="true" [yAxis]="true"
+    [showGridLines]="true" [roundDomains]="true" [tooltipDisabled]="false">
+</ngx-charts-bar-vertical>
+
+<div *ngIf="salesData.length === 0">Loading sales data...</div>
